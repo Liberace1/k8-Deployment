@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: spring-demo-cluster
+  region: us-west-1
+
+nodeGroups:
+  - name: worker-nodes
+    instanceType: t3.small
+    desiredCapacity: 3
+    minSize: 2
+    maxSize: 4
+    iam:
+      withAddonPolicies:
+        imageBuilder: true 

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spaceinvaders
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spaceinvaders
+  template:
+    metadata:
+      labels:
+        app: spaceinvaders
+    spec:
+      containers:
+        - name: spaceinvaders
+          image: ajstarks/space-invaders
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spaceinvaders-service
+spec:
+  selector:
+    app: spaceinvaders
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
