@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flappybird
+  name: tetris
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flappybird
+      app: tetris
   template:
     metadata:
       labels:
-        app: flappybird
+        app: tetris
     spec:
       containers:
-        - name: flappybird
-          image: zizizach/flappybird
+        - name: tetris
+          image: liberace1/tetris-web-game
           ports:
             - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: flappybird-service
+  name: tetris-service
 spec:
   selector:
-    app: flappybird
+    app: tetris
   ports:
     - protocol: TCP
       port: 80

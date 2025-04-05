@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: supermario
-          image: bharathshetty4/supermario
+          image: liberace1/mario-web-game
           ports:
             - containerPort: 8080
 ---
