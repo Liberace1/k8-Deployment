@@ -1,30 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pacman
+  name: multi-retro-web-game
+  labels:
+    app: multi-retro-web-game
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: pacman
+      app: multi-retro-web-game
   template:
     metadata:
       labels:
-        app: pacman
+        app: multi-retro-web-game
     spec:
       containers:
-        - name: pacman
-          image: liberace1/pacman-html-web-game
+        - name: retro-game
+          image: liberace1/multi-retro-web-game:latest
           ports:
             - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: pacman-service
+  name: multi-retro-web-game-service
 spec:
   selector:
-    app: pacman
+    app: multi-retro-web-game
   ports:
     - protocol: TCP
       port: 80

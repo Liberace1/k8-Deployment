@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spaceinvaders
-          image: ajstarks/space-invaders
+          image: liberace1/space-invaders-web-game
           ports:
             - containerPort: 8080
 ---

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profile-demo
+  template:
+    metadata:
+      labels:
+        app: profile-demo
+    spec:
+      containers:
+        - name: backend
+          image: liberace1/profile-demo-backend
+          ports:
+            - containerPort: 5000
+        - name: frontend
+          image: liberace1/profile-demo-frontend
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-demo-frontend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: profile-demo
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+      name: http
